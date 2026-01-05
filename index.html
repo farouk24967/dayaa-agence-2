@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyageurs de Beni Saf - Agence de Voyage</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="website icon" href="photos/356241057_236052562555061_5882348464625412085_n.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #0ea5a4; /* teal */
+  --secondary-color: #0b3d91; /* deep navy */
+  --accent-color: #ffd166; /* warm gold */
+  --light-color: #f8fafc; /* near-white */
+  --dark-color: #0f172a; /* dark text */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--dark-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Header styles */
+.site-header {
+  background: var(--light-color);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+.site-header .header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+}
+.site-header .logo {
+  font-weight: 700;
+  color: var(--secondary-color);
+  font-size: 1.125rem;
+}
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.main-nav a {
+  color: var(--dark-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1.2rem;
+  height: 45px; /* fixed height to keep boxes aligned */
+  line-height: 1;
+  border-radius: 8px;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
+}
+.main-nav a:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+}
+.main-nav a.active {
+  background: var(--secondary-color);
+  color: white;
+  box-shadow: 0 8px 22px rgba(11,61,145,0.12);
+}
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .main-nav {
+    display: none;
+  }
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* Top bar */
+.top-bar {
+  background: var(--secondary-color);
+  color: white;
+  font-size: 0.95rem;
+}
+.top-bar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 1rem;
+}
+.contact-list {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.contact-item {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+  color: #f1f5f9;
+}
+.contact-item i {
+  stroke: #ffd166;
+}
+.social-list a {
+  color: #f8fafc;
+  margin-left: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+.social-list i {
+  stroke: #ffd166;
+}
+
+/* Header actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Mobile nav */
+.hidden { display: none; }
+.mobile-nav {
+  background: var(--light-color);
+  border-top: 1px solid rgba(15,23,42,0.04);
+}
+.mobile-nav ul {
+  list-style: none;
+  padding: 0.75rem 1rem;
+  margin: 0;
+}
+.mobile-nav li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(15,23,42,0.04);
+}
+.mobile-nav a {
+  color: var(--dark-color);
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.mobile-contact {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+.mobile-social a {
+  display: inline-flex;
+  gap: 0.5rem;
+  margin-right: 0.75rem;
+}
+
+@media (min-width: 769px) {
+  .mobile-nav { display: none !important; }
+}
+
+/* Footer styles */
+.site-footer {
+  background: var(--dark-color);
+  color: var(--light-color);
+  padding: 1rem 0.5rem;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.footer-left {
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+.footer-social {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+.social-link {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  color: var(--light-color);
+  background: transparent;
+  transition: background 0.18s ease, transform 0.12s ease;
+  text-decoration: none;
+}
+.social-link i { stroke: #ffd166; }
+.social-link:hover { background: rgba(248,250,252,0.06); transform: translateY(-2px); }
+
+/* TikTok specific */
+.tiktok-link svg { color: #000000; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12)); }
+.tiktok-link { color: white; }
+
+@media (max-width: 600px) {
+  .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+  
+  /* Extra small phone adjustments */
+  .relative.h-screen {
+    min-height: auto;
+    height: auto;
+    padding: 15px 0.5rem;
+  }
+  
+  .relative.h-screen h1 {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+  
+  .relative.h-screen p {
+    font-size: 0.75rem !important;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  
+  .flex.flex-col.sm\:flex-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .flex.flex-col.sm\:flex-row > a {
+    width: 100%;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .header-actions .btn {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.7rem;
+  }
+}
+/* Chat widget removed */
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: 2px solid var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Button active/focus styles */
+.btn:active, .btn:focus {
+  transform: translateY(-1px) scale(0.995);
+  outline: none;
+  box-shadow: 0 6px 14px rgba(14,165,164,0.12);
+}
+
+.main-nav a:focus {
+  outline: 3px solid rgba(11,61,145,0.12);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Make icon strokes consistent inside nav */
+.main-nav a i, .mobile-nav a i {
+  stroke-width: 1.6;
+}
+
+/* Mobile nav adjustments to keep spacing consistent */
+.mobile-nav ul {
+  list-style: none;
+  padding: 0.5rem 0.75rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.mobile-nav li {
+  padding: 0;
+  border-bottom: none;
+}
+.mobile-nav a {
+  color: var(--dark-color);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.25rem;
+  border-radius: 6px;
+}
+.mobile-nav a:hover {
+  background: rgba(14,165,164,0.06);
+}
+
+/* Ensure top-bar contact items align with icons */
+.contact-item {
+  display: inline-flex;
+  align-items: center;
+}
+.contact-item i {
+  margin-right: 0.4rem;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.section-title {
+  position: relative;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  margin-bottom: 1rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .section-title h2 {
+    font-size: 1.5rem;
+  }
+  
+  /* Hero section adjustments for mobile */
+  .relative.h-screen {
+    min-height: auto;
+    height: auto;
+    padding: 20px 0.75rem;
+  }
+  
+  .relative.h-screen h1 {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  
+  .relative.h-screen p {
+    font-size: 0.85rem !important;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  
+  /* Button sizing on mobile */
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .header-actions .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+#dayaa-bubble { position: fixed; bottom: 20px; right: 100px; width: 60px; height: 60px;
+    background: linear-gradient(135deg,#007bff,#0056b3); border-radius:50%; cursor:pointer;
+    box-shadow:0 4px 25px rgba(0,123,255,0.5); display:flex; align-items:center; justify-content:center; z-index:99999;
+    transition: transform 0.3s, box-shadow 0.3s; }
+#dayaa-bubble:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(0,123,255,0.6); }
+#dayaa-bubble svg{ width:28px;height:28px; fill:white; }
+</style>
+
+<body id="top" class="bg-gray-50">
+   
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo-container" style="display: flex; align-items: center; gap: 12px;">
+                <a href="#" class="logo"></a>
+                <img src="photos/356241057_236052562555061_5882348464625412085_n.jpg" alt="وكالة ضياء الكون للسياحة و السفر" style="height: 50px; object-fit: contain;">
+                <span style="font-weight: 700; color: var(--secondary-color); direction: rtl; unicode-bidi: bidi-override;">وكالة ضياء الكون للسياحة و السفر</span>
+            </div>
+
+            <nav class="main-nav" aria-label="Navigation principale">
+                <ul>
+                    <li><a href="#top"><i data-feather="home"></i> Accueil</a></li>
+                    <li><a href="#about"><i data-feather="users"></i> À propos</a></li>
+                    <li><a href="#destinations"><i data-feather="map"></i> Nos voyages</a></li>
+                    <li><a href="#contact"><i data-feather="phone"></i> Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#contact" class="btn btn-primary">Réserver</a>
+                <button class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <nav id="mobile-menu" class="mobile-nav hidden" aria-label="Menu mobile">
+                <ul>
+                <li><a href="#top"><i data-feather="home"></i> Accueil</a></li>
+                <li><a href="#about"><i data-feather="users"></i> À propos</a></li>
+                <li><a href="#destinations"><i data-feather="map"></i> Nos voyages</a></li>
+                <li><a href="#contact"><i data-feather="phone"></i> Contact</a></li>
+                <li class="mobile-contact"><i data-feather="phone"></i> +213 45 67 89 01</li>
+                <li class="mobile-contact"><i data-feather="mail"></i> contact@voyageursbenisaf.dz</li>
+                <li class="mobile-social">
+                    <a href="#" aria-label="Facebook"><i data-feather="facebook"></i> Facebook</a>
+                    <a href="#" aria-label="Instagram"><i data-feather="instagram"></i> Instagram</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-screen flex items-center justify-center text-white bg-cover bg-center" style="background-image: url('photos/Design Voyages Airlines avec Logo.png'); background-size: cover; background-position: top center; background-repeat: no-repeat; background-attachment: scroll;">
+            <div class="absolute inset-0 bg-black opacity-45"></div>
+            <div class="relative z-10 text-center px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Découvrez le Monde avec Nous</h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Votre portail vers des aventures inoubliables depuis Beni Saf, Algérie</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#destinations" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full transition duration-300">Explorer les Destinations</a>
+                    <a href="#contact" class="bg-transparent border-2 border-white hover:bg-white hover:text-teal-800 text-white font-bold py-3 px-8 rounded-full transition duration-300">Nous Contacter</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- À Propos -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Bienvenue chez Voyageurs de Beni Saf</h2>
+                    <div class="w-24 h-1 bg-teal-500 mx-auto"></div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2">
+                        <img src="photos/511213394_708632485297064_8501435092903907471_n.jpg" alt="Beni Saf" class="rounded-xl shadow-xl w-full">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Votre Partenaire de Voyage Local</h3>
+                        <p class="text-gray-600 mb-6">
+                            Fondée à Beni Saf, notre agence de voyage vous propose des expériences authentiques et personnalisées. 
+                            Nous combinons notre connaissance locale avec une expertise internationale pour créer des voyages 
+                            mémorables qui dépassent vos attentes.
+                        </p>
+                        <p class="text-gray-600 mb-8">
+                            Que vous recherchiez une escapade locale, une aventure internationale ou un voyage d'affaires, 
+                            notre équipe dévouée s'occupe de chaque détail pour vous offrir un service exceptionnel.
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="bg-teal-100 p-3 rounded-full">
+                                <i data-feather="map-pin" class="text-teal-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Basés à Beni Saf</h4>
+                                <p class="text-gray-600">Votre porte d'entrée vers le monde</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nos Services</h2>
+                    <div class="w-24 h-1 bg-teal-500 mx-auto"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+                            <i data-feather="globe" class="text-teal-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Voyages Organisés</h3>
+                        <p class="text-gray-600">
+                            Des circuits complets vers les destinations les plus populaires avec des guides locaux expérimentés.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+                            <i data-feather="home" class="text-teal-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Hébergement</h3>
+                        <p class="text-gray-600">
+                            Des séjours dans les meilleurs hôtels et locations avec des tarifs préférentiels réservés à nos clients.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+                            <i data-feather="briefcase" class="text-teal-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Voyages d'Affaires</h3>
+                        <p class="text-gray-600">
+                            Organisation complète de voyages professionnels avec services de transport et hébergement premium.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+                            <i data-feather="users" class="text-teal-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Groupes & Événements</h3>
+                        <p class="text-gray-600">
+                            Organisation de voyages pour groupes, mariages, anniversaires et autres événements spéciaux.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+                            <i data-feather="credit-card" class="text-teal-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Assurances Voyages</h3>
+                        <p class="text-gray-600">
+                            Des polices d'assurance adaptées à vos besoins pour voyager en toute sérénité.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                        <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+                            <i data-feather="calendar" class="text-teal-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Planification Personnalisée</h3>
+                        <p class="text-gray-600">
+                            Création d'itinéraires sur mesure selon vos préférences et votre budget.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Destinations -->
+        <section id="destinations" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Destinations Populaires</h2>
+                    <div class="w-24 h-1 bg-teal-500 mx-auto"></div>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                        Découvrez nos destinations les plus prisées par nos voyageurs. Chaque endroit offre une expérience unique.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="photos/istockphoto-1145422105-612x612.jpg" alt="Paris" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Paris, France</h3>
+                            <p class="text-gray-600 mb-4">La Ville Lumière vous attend avec ses monuments emblématiques et sa culture raffinée.</p>
+                            <a href="#" class="text-teal-600 font-bold flex items-center">
+                                Découvrir
+                                <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="photos/images (1).jpg" alt="Istanbul" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Istanbul, Turquie</h3>
+                            <p class="text-gray-600 mb-4">Un mélange fascinant de cultures entre l'Europe et l'Asie avec une histoire millénaire.</p>
+                            <a href="#" class="text-teal-600 font-bold flex items-center">
+                                Découvrir
+                                <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="photos/dubai-skyline-1200x842.webp" alt="Dubai" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Dubai, Émirats Arabes</h3>
+                            <p class="text-gray-600 mb-4">Une destination de luxe avec des gratte-ciels modernes et des paysages désertiques.</p>
+                            <a href="#" class="text-teal-600 font-bold flex items-center">
+                                Découvrir
+                                <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                            </a>
+                        </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-block bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                        Voir Toutes les Destinations
+                    </a>
+                </div>
+            </div>
+        </section>
+
+       
+        <!-- Contact -->
+        <section id="contact" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Contactez-Nous</h2>
+                    <div class="w-24 h-1 bg-teal-500 mx-auto"></div>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                        Prêt pour votre prochaine aventure? Contactez notre équipe pour planifier votre voyage parfait.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <div class="lg:w-1/2">
+                        <form class="bg-gray-50 p-8 rounded-xl shadow-lg">
+                            <div class="mb-6">
+                                <label for="name" class="block text-gray-700 font-bold mb-2">Nom Complet</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Votre nom">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="votre@email.com">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="phone" class="block text-gray-700 font-bold mb-2">Téléphone</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="+213 XXX XXX XXX">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-bold mb-2">Message</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Décrivez votre projet de voyage..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                                Envoyer le Message
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="lg:w-1/2">
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-lg h-full">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-6">Informations de Contact</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i data-feather="map-pin" class="text-teal-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Adresse</h4>
+                                        <p class="text-gray-600">N° 70, ZHUN 02 (en face tribunal), Béni Saf, <br>Wilaya d’Aïn Témouchent, Algérie</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i data-feather="phone" class="text-teal-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Téléphone</h4>
+                                        <p class="text-gray-600">Téléphone : 0674 968 093
+
+                                            <br>Fax : 043 74 11 02</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i data-feather="mail" class="text-teal-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Email</h4>
+                                        <p class="text-gray-600">mailto:hadj.hadri46@gmail.com<br>info@voyageursbenisaf.dz</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i data-feather="clock" class="text-teal-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Heures d'Ouverture</h4>
+                                        <p class="text-gray-600">Lundi - Vendredi: 08:00 - 18:00<br>Samedi: 09:00 - 14:00<br>Dimanche: Fermé</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-10">
+                                <h4 class="font-bold text-gray-800 mb-4">Suivez-Nous</h4>
+                                <div class="flex space-x-4">
+                                    <a href="https://www.facebook.com/diaaelkaoun/?utm_source=chatgpt.com" target="_blank" rel="noopener" aria-label="Facebook" class="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center text-white hover:bg-teal-600 transition duration-300">
+                                        <i data-feather="facebook" class="w-5 h-5"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/diaaelkaoun_tour/" target="_blank" rel="noopener" aria-label="Instagram" class="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center text-white hover:bg-teal-600 transition duration-300">
+                                        <i data-feather="instagram" class="w-5 h-5"></i>
+                                    </a>
+                                    <a href="https://www.tiktok.com/@agencediaaelkaoun" target="_blank" rel="noopener" aria-label="TikTok" class="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center text-white hover:bg-teal-600 transition duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="w-5 h-5" fill="currentColor" aria-hidden="true">
+                                            <path d="M96 40v112a48 48 0 1 0 48-48V72h48V40h-48V40c-26.5 0-48-21.5-48-48v48z" />
+                                        </svg>
+                                    </a>
+                                    <a href="mailto:hadj.hadri46@gmail.com" target="_blank" rel="noopener" aria-label="Email" class="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center text-white hover:bg-teal-600 transition duration-300">
+                                        <i data-feather="mail" class="w-5 h-5"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    </footer>
+    
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+    <script>feather.replace();</script>
+
+    <script src="https://cdn.botpress.cloud/webchat/v3.5/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2025/12/14/19/20251214195049-AXEM8SV5.js" defer></script>
+<script>
+  window.botpressWebChat.init({
+    host: 'https://chat.bots.business',
+    botId: 'dayaa-chatbot',
+    extraStylesheet: 'https://files.bpcontent.cloud/2025/12/14/19/20251214195049-AXEM8SV5.css',
+    enableReset: true,
+    showConversationsButton: true,
+    enableTranscriptDownload: true,
+    requireEmail: false,
+    showPoweredBy: false
+  });
+  
+</script>
+</body>
+</html>
+
+
+
+
