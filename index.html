@@ -461,6 +461,44 @@ img {
     transition: transform 0.3s, box-shadow 0.3s; }
 #dayaa-bubble:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(0,123,255,0.6); }
 #dayaa-bubble svg{ width:28px;height:28px; fill:white; }
+/* Responsive map iframe */
+.map-frame { width: 100%; max-width: 600px; aspect-ratio: 16 / 9; height: auto; display: block; margin: 0 auto; border-radius: 8px; }
+@media (max-width: 600px) {
+  /* Map on mobile */
+  .map-frame { width: 80vw; max-width: 300px; aspect-ratio: 16 / 9; margin: 0; margin-left: 10px; }
+
+  /* Global mobile spacing and sizing adjustments */
+  html, body { font-size: 14px; }
+  .container { padding: 0 0.75rem; }
+  .text-center.mb-16 { margin-bottom: 1.25rem !important; }
+  section.py-20 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+  .grid { gap: 0.75rem !important; }
+  .bg-white.p-8, .bg-gray-50.p-8 { padding: 0.75rem !important; }
+  .space-y-6 > * + * { margin-top: 0.75rem !important; }
+  .flex.gap-12 { gap: 0.75rem !important; }
+  .rounded-xl { border-radius: 0.5rem; }
+
+  /* Reduce large left margin on destinations grid */
+  .ml-8 { margin-left: 0 !important; }
+
+  /* Typography */
+  h1 { font-size: 1.25rem !important; }
+  h2 { font-size: 1.25rem !important; }
+  h3 { font-size: 1rem !important; }
+  p, li, label, input, textarea { font-size: 0.9rem !important; }
+
+  /* Buttons */
+  .btn { padding: 0.45rem 0.9rem; font-size: 0.8rem; }
+  .header-actions .btn { padding: 0.35rem 0.6rem; font-size: 0.75rem; }
+
+  /* Icons visibility and size */
+  i[data-feather] { width: 18px; height: 18px; stroke-width: 2.2; }
+  .contact-item i, .mobile-nav a i, .main-nav a i { stroke-width: 2.2; }
+
+  /* Card images smaller */
+  .rounded-xl img { height: 9rem !important; object-fit: cover; }
+}
+
 </style>
 
 <body id="top" class="bg-gray-50">
@@ -780,7 +818,7 @@ img {
                                         <h4 class="font-bold text-gray-800">Adresse</h4>
                                         <p class="text-gray-600">N° 70, ZHUN 02 (en face tribunal), Béni Saf, <br>Wilaya d’Aïn Témouchent, Algérie</p>
                                         <a href="https://maps.app.goo.gl/EAYaUgMqnwejeq1EA" target="_blank" rel="noopener" class="text-teal-600 font-bold flex items-center mt-2">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d203.49868847533554!2d-1.3657858104330352!3d35.30650288875937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd792fd3a137926b%3A0xe147aba13aec94d8!2z2YjZg9in2YTYqSDYttmK2KfYoSDYp9mE2YPZiNmGINmE2YTYs9mK2KfYrdipINmI2KfZhNiz2YHYsQ!5e0!3m2!1sfr!2sdz!4v1768503005190!5m2!1sfr!2sdz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                            <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d203.49868847533554!2d-1.3657858104330352!3d35.30650288875937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd792fd3a137926b%3A0xe147aba13aec94d8!2z2YjZg9in2YTYqSDYttmK2KfYoSDYp9mE2YPZiNmGINmE2YTYs9mK2KfYrdipINmI2KfZhNiz2YHYsQ!5e0!3m2!1sfr!2sdz!4v1768503005190!5m2!1sfr!2sdz" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                             <i data-feather="map" class="ml-2 w-4 h-4"></i>
                                         </a>
                                     </div>
